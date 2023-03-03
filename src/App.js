@@ -11,8 +11,8 @@ function App() {
     
   }
 
-  async function sendDataHandler(){
-      // event.preventDefault();
+  async function sendDataHandler(event){
+      event.preventDefault();
       console.log(myData);
       const res = await fetch('https://test-7a2ea-default-rtdb.firebaseio.com/pierwsze_kroki.json',
       {
