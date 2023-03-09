@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
       }
 
       console.log(my_object);
-
+      
       const res = await fetch('https://test-7a2ea-default-rtdb.firebaseio.com/pierwsze_kroki.json',
       {
         method: 'POST',
@@ -34,7 +34,7 @@ function App() {
        setMyData('') ;
   }
 
-  async function getDataHandler(){
+  const getDataHandler = useCallback( async () => {
       const res = await fetch('https://test-7a2ea-default-rtdb.firebaseio.com/pierwsze_kroki.json')
       
       const data = await res.json()
@@ -49,6 +49,12 @@ function App() {
       console.log(loadedData);
      
   }
+  )
+
+  useEffect( () => {
+    getDataHandler()
+   }, [getDataHandler])
+
 
   return (
     <div className="App">
